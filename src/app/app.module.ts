@@ -8,11 +8,13 @@ import { EditEmployeeComponent } from './components/edit-employee/edit-employee.
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
 @NgModule({
   declarations: [
     AppComponent,
     EditEmployeeComponent,
-    EmployeesListComponent
+    EmployeesListComponent,
+    EmployeeGridComponent
   ],
   imports: [
     BrowserModule,
