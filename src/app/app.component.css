@@ -1,0 +1,5 @@
+.empHover:hover{
+    transform: scale(1.02);
+    color:#007bff;
+}
+

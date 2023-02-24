@@ -1,29 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employees.models';
-import { MatTableDataSource } from '@angular/material/table';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { RouterModule, Routes } from '@angular/router';
+import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
+import { MatTableDataSource } from '@angular/material/table';
+const routes: Routes = [
+  { path: 'employees/edit/:id', component: EditEmployeeComponent }
+];
+
 
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css']
 })
-export class EmployeesListComponent implements OnInit {
-  employees: Employee[] = [];
-  displayedColumns: string[] = ['name', 'email', 'number', 'salary', 'description'];
+
+export class EmployeesListComponent {
+   employees : Employee[] =[] ;
+   
+  constructor(private employeesService: EmployeesService){
+    
+  }
+  ngOnInit(): void {
+    this.employeesService.getAllEmployees()
+    .subscribe({
+      next :(employees) =>{
+        
+ this.employees = employees
+
+      },
+      error: (response) =>{
+        console.log(response)
+      }
+    })
+
+  }
+  displayedColumns: string[] = ['name', 'email', 'number', 'salary'];
+
   dataSource = new MatTableDataSource<Employee>(this.employees);
 
-  constructor(private employeesService: EmployeesService) {}
-
-  ngOnInit(): void {
-    this.employeesService.getAllEmployees().subscribe({
-      next: (employees) => {
-        this.employees = employees;
-        this.dataSource.data = employees;
-      },
-      error: (response: any) => {
-        console.log(response);
-      }
-    });
-  }
+  
 }

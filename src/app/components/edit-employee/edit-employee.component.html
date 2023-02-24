@@ -1,0 +1,60 @@
+<div  class="container-fluid">
+  <h4 class="mb-3">Edit Employee</h4>
+  <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="editEmployeeForm" (ngSubmit)="updateEmployee()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" formControlName="name">
+            <div *ngIf="form['name'].invalid && (form['name'].dirty || form['name'].touched)" class="text-danger">
+              <div *ngIf="form['name'].errors?.['required']">
+                Name is required.
+              </div>
+              <div *ngIf="form['name'].errors?.['minlength']">
+                Name must be at least 2 characters long.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" formControlName="email">
+            <div *ngIf="form['email'].invalid && (form['email'].dirty || form['email'].touched)" class="text-danger">
+              <div *ngIf="form['email'].errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="form['email'].errors?.['email']">
+                Invalid email address.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="number" class="form-control" id="phone" name="phone" formControlName="phone">
+            <div *ngIf="form['phone'].invalid && (form['phone'].dirty || form['phone'].touched)" class="text-danger">
+              <div *ngIf="form['phone'].errors?.['required']">
+                Phone number is required.
+              </div>
+              <div *ngIf="form['phone'].errors?.['pattern']">
+                Phone number must contain only numbers.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" formControlName="salary">
+            <div *ngIf="form['salary'].invalid && (form['salary'].dirty || form['salary'].touched)" class="text-danger">
+              <div *ngIf="form['salary'].errors?.['required']">
+                Salary is required.
+              </div>
+              <div *ngIf="form['salary'].errors?.['min']">
+                Salary must be a positive number.
+              </div>
+            </div>
+          </div>
+          <button style="margin-right: 345px; width: 100px;" type="submit" class="btn btn-outline-success">Save</button>
+          <button  type="button" class="btn btn-danger delwil" (click)="deleteEmployee(employeeDetails.id)">Delete</button>
+        </form>
+    </div>
+  </div>
+</div>
