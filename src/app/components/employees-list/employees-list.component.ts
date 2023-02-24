@@ -24,20 +24,15 @@ export class EmployeesListComponent {
   ngOnInit(): void {
     this.employeesService.getAllEmployees()
     .subscribe({
-      next :(employees) =>{
-        
- this.employees = employees
-
+      next :(employees) =>{ 
+        this.employees = employees
       },
       error: (response) =>{
         console.log(response)
       }
     })
-
   }
   displayedColumns: string[] = ['name', 'email', 'number', 'salary'];
 
   dataSource = new MatTableDataSource<Employee>(this.employees);
-
-  
 }

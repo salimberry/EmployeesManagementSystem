@@ -9,12 +9,14 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     EditEmployeeComponent,
     EmployeesListComponent,
-    EmployeeGridComponent
+    EmployeeGridComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
