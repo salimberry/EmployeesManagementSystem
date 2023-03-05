@@ -1,32 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/enivironment/envirinment';
+
 import { Employee } from '../models/employees.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
-  baseApiUrl :  string = environment.baseApiUrl
+  baseApiUrl: string = environment.baseApiUrl;
+
   constructor(private http: HttpClient) { }
 
-  getAllEmployees():Observable<Employee[]>{
-   return this.http.get<Employee[]>(this.baseApiUrl + '/api/employees');
-  }
-  addEmployee(addEmployeeRequest: Employee):Observable<Employee>{
-    addEmployeeRequest.id="00000000-0000-0000-0000-000000000000"
-    return this.http.post<Employee>(this.baseApiUrl + '/api/employees',addEmployeeRequest)
+  getAllEmployees() {
+    return this.http.get<any>(`${this.baseApiUrl}/api/Employees`).pipe(
+      map(response => response.data) // extract the data property from the response
+    );
   }
 
-  getEmployee(id: string) :Observable<Employee> {
-   return  this.http.get<Employee>(this.baseApiUrl + '/api/employees/' + id)
+  addEmployee(addEmployeeRequest: Employee): Observable<Employee> {
+    addEmployeeRequest.id = "00000000-0000-0000-0000-000000000000";
+    return this.http.post<Employee>(`${this.baseApiUrl}/api/Employees`, addEmployeeRequest);
   }
 
-  updateEmployee(id : string,updateEmployeeRequest :Employee) :Observable<Employee>{
-   return  this.http.put<Employee>(this.baseApiUrl + '/api/employees/' + id, updateEmployeeRequest)
+  getEmployee(id: string): Observable<Employee> {
+    return this.http.get<any>(`${this.baseApiUrl}/api/Employees/${id}`).pipe(
+      map(response => response.data)
+    );
   }
-  deleteEmployee(id:string):Observable<Employee>{
-    return  this.http.delete<Employee>(this.baseApiUrl + '/api/employees/' + id)
+
+  updateEmployee(id: string, updatedEmployeeRequest: Employee): Observable<Employee> {
+    return this.http.put<any>(`${this.baseApiUrl}/api/Employees/${id}`, updatedEmployeeRequest);
+  }
+
+  deleteEmployee(id: string): Observable<Employee> {
+    return this.http.delete<Employee>(`${this.baseApiUrl}/api/Employees/${id}`);
   }
 }

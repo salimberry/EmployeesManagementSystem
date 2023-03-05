@@ -1,26 +1,32 @@
-<div class="container-fluid" >
-  <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Employee ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Salary</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-          <td>{{employee.id}}</td>
-          <td>{{employee.name}}</td>
-          <td>{{employee.email}}</td>
-          <td>{{employee.phone}}</td>
-          <td>{{employee.salary}}</td>
-          <td>
-              <button  type="submit" class="btn btn-outline-primary"  style="list-style:circle;" [routerLink]="['/employees/edit']" [queryParams]="{ id: employee.id }" >Details</button>
-          </td>
-        </tr>  
-      </tbody>
-    </table>
+<div class="container-fluid">
+  <mat-table [dataSource]="employees">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Employee ID</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{ employee.id }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{ employee.name }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{ employee.email }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{ employee.phone }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="salary">
+      <mat-header-cell *matHeaderCellDef>Salary</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{ employee.salary }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button  type="submit" class="btn btn-outline-primary"  style="list-style:circle;" [routerLink]="['/employees/edit']" [queryParams]="{ id: employee.id }" >Details</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>
