@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Employee } from 'src/app/models/employees.models';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-edit-employee',
@@ -52,7 +54,7 @@ export class EditEmployeeComponent implements OnInit {
       }
     });
   }
-  
+
 
   get form() { return this.editEmployeeForm.controls; }
 
@@ -67,7 +69,7 @@ export class EditEmployeeComponent implements OnInit {
       phone: this.form['phone'].value,
       salary: this.form['salary'].value
     };
-    
+
     this.employeeService.updateEmployee(updatedEmployee.id, updatedEmployee)
       .subscribe({
         next :(response)=>{
@@ -83,7 +85,7 @@ export class EditEmployeeComponent implements OnInit {
   deleteEmployee(id: string) {
     if (confirm('Are you sure you want to delete this employee? Click Ok to delete')) {
       this.employeeService.deleteEmployee(this.employeeDetails.id).subscribe({
-        next: (response) => { 
+        next: (response) => {
           this.router.navigate(['employees']).then(() => {
             alert('Employee deleted successfully!');
           });
@@ -91,6 +93,6 @@ export class EditEmployeeComponent implements OnInit {
       });
     }
   }
-  
+
 
 }

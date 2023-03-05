@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+;
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,

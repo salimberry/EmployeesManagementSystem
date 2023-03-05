@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { Employee } from 'src/app/models/employees.models';
 import { EmployeesService } from 'src/app/services/employees.service';
 
@@ -18,7 +19,7 @@ constructor(private employeeService: EmployeesService, private router: Router) {
   this.addEmployeeRequestForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6,11}$')]),
     salary: new FormControl('', [Validators.required, Validators.min(0)])
   });
 
@@ -35,12 +36,12 @@ constructor(private employeeService: EmployeesService, private router: Router) {
   ngOnInit(): void {
   }
 
-  get form() { return this.addEmployeeRequestForm?.controls; } 
+  get form() { return this.addEmployeeRequestForm?.controls; }
   addEmployee(){
     if (this.addEmployeeRequestForm?.invalid) {
       return;
     }
-  
+
     const addEmployeeRequest: Employee = {
       id : '',
       name: this.form['name'].value,
@@ -48,7 +49,7 @@ constructor(private employeeService: EmployeesService, private router: Router) {
       phone : this.form['phone'].value,
       salary: this.form['salary'].value
     };
-  
+
     this.employeeService.addEmployee(addEmployeeRequest)
       .subscribe({
         next : (employee)=>{

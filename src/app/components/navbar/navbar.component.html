@@ -1,74 +1,74 @@
 <div class="container-fluid bg-dark navbar-dark">
-    <nav style="min-height: 80px;" class="navbar navbar-expand-lg bg-dark navbar-dark nav_wrapper">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active empHover" aria-current="page" routerLink="employees/grid">List of Employees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active empHover" aria-current="page" routerLink="employees">Edit Employee</a>
-        </li>    
-        <li class="nav-item" id="navbarSupportedContent">
-          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addEmployee" type="submit">Add Employee</button>
-        </li>  
-      </ul>
-    </div>
-  </nav>
-  <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="addEmployeeRequestForm" (ngSubmit)="addEmployee()">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name">
-              <div *ngIf="form['name'].errors?.['required'] && form['name'].touched" class="text-danger">
-                Name is required.
-              </div>
-              <div *ngIf="form['name'].errors?.['minlength'] && form['name'].touched" class="text-danger">
-                Name should have at least 2 characters.
-              </div>
+  <nav style="min-height: 80px;" class="navbar navbar-expand-lg bg-dark navbar-dark nav_wrapper">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active empHover" aria-current="page" routerLink="employees/grid">List of Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active empHover" aria-current="page" routerLink="employees">Edit Employee</a>
+      </li>
+      <li class="nav-item" id="navbarSupportedContent">
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addEmployee" type="submit">Add Employee</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addEmployeeRequestForm" (ngSubmit)="addEmployee()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <div *ngIf="form['name'].errors?.['required'] && form['name'].touched" class="text-danger">
+              Name is required.
             </div>
-            <div class="form-group">
-              <label for="email" class="mrAll">Email address</label>
-              <input type="email" class="form-control" id="email" formControlName="email">
-              <div *ngIf="form['email'].errors?.['required'] && form['email'].touched" class="text-danger">
-                Email is required.
-              </div>
-              <div *ngIf="form['email'].errors?.['email'] && form['email'].touched" class="text-danger">
-                Invalid email format.
-              </div>
+            <div *ngIf="form['name'].errors?.['minlength'] && form['name'].touched" class="text-danger">
+              Name should have at least 2 characters.
             </div>
-            <div class="form-group">
-              <label for="phone" class="mrAll">Phone</label>
-              <input type="tel" class="form-control" id="phone" formControlName="phone">
-              <div *ngIf="form['phone'].errors?.['required'] && form['phone'].touched" class="text-danger">
-                Phone is required.
-              </div>
-              <div *ngIf="form['phone'].errors?.['pattern'] && form['phone'].touched" class="text-danger">
-                Phone should contain only numbers.
-              </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="mrAll">Email address</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div *ngIf="form['email'].errors?.['required'] && form['email'].touched" class="text-danger">
+              Email is required.
             </div>
-            <div class="form-group">
-              <label for="salary" class="mrAll">Salary</label>
-              <input type="number" class="form-control" id="salary" formControlName="salary">
-              <div *ngIf="form['salary'].errors?.['required'] && form['salary'].touched" class="text-danger">
-                Salary is required.
-              </div>
-              <div *ngIf="form['salary'].errors?.['min'] && form['salary'].touched" class="text-danger">
-                Salary should be greater than or equal to 0.
-              </div>
+            <div *ngIf="form['email'].errors?.['email'] && form['email'].touched" class="text-danger">
+              Invalid email format.
             </div>
-            <button style="margin-top: 8px;"  type="submit" class="btn btn-outline-success mrAll"  data-bs-dismiss="modal" #submitButton [disabled]="!addEmployeeRequestForm.valid" novalidate>Add</button>
-        </form> 
-        </div>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="mrAll">Phone</label>
+            <input type="tel" class="form-control" id="phone" formControlName="phone">
+            <div *ngIf="form['phone'].errors?.['required'] && form['phone'].touched" class="text-danger">
+              Phone is required.
+            </div>
+            <div *ngIf="form['phone'].errors?.['pattern'] && form['phone'].touched" class="text-danger">
+              The phone number should only consist of digits and should have a minimum length of 6 and a maximum length of 11.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="salary" class="mrAll">Salary</label>
+            <input type="number" class="form-control" id="salary" formControlName="salary">
+            <div *ngIf="form['salary'].errors?.['required'] && form['salary'].touched" class="text-danger">
+              Salary is required.
+            </div>
+            <div *ngIf="form['salary'].errors?.['min'] && form['salary'].touched" class="text-danger">
+              Salary should be greater than or equal to 0.
+            </div>
+          </div>
+          <button style="margin-top: 8px;"  type="submit" class="btn btn-outline-success mrAll"  data-bs-dismiss="modal" #submitButton [disabled]="!addEmployeeRequestForm.valid" novalidate>Add</button>
+      </form>
       </div>
     </div>
   </div>
-  </div>
+</div>
+</div>
