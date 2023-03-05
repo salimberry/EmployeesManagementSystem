@@ -19,7 +19,7 @@ constructor(private employeeService: EmployeesService, private router: Router) {
   this.addEmployeeRequestForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6,11}$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5,8}$')]),
     salary: new FormControl('', [Validators.required, Validators.min(0)])
   });
 
