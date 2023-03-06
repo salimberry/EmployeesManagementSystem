@@ -33,7 +33,7 @@ export class EmployeesListComponent {
       }
     })
   }
-  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'salary', 'actions'];;
+  displayedColumns: string[] = ['name', 'email', 'phone', 'salary', 'actions'];;
 
   dataSource = new MatTableDataSource<Employee>(this.employees);
 }

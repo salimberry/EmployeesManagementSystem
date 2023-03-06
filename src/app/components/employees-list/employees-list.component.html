@@ -1,9 +1,5 @@
 <div class="container-fluid">
   <mat-table [dataSource]="employees">
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>Employee ID</mat-header-cell>
-      <mat-cell *matCellDef="let employee">{{ employee.id }}</mat-cell>
-    </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
       <mat-cell *matCellDef="let employee">{{ employee.name }}</mat-cell>
